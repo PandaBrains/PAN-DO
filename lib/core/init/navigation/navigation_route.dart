@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pan_do/core/components/button/custom_button.dart';
+import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
 
 class NavigationRoute {
@@ -16,7 +18,12 @@ class NavigationRoute {
             appBar: AppBar(
               title: Text('SEA'),
             ),
-            body: Container()));
+            body: Container(
+              child: CustomButton(
+                buttonName: "Giriş Yap",
+                onPressed: () {},
+              ),
+            )));
 
       default:
         return MaterialPageRoute(

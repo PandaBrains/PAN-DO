@@ -29,7 +29,7 @@ class AppThemeLight extends AppTheme with ILightTheme {
         surface: Colors.blue,
         background: Color(0xfff6f9fc),
         error: Colors.red[900]!,
-        onPrimary: Colors.greenAccent,
+        onPrimary: Colors.white,
         onSecondary: Colors.black,
         onSurface: Colors.white30,
         onBackground: Colors.black12,
