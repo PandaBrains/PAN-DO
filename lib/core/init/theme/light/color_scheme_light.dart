@@ -9,6 +9,7 @@ class ColorSchemeLight {
 
   ColorSchemeLight._init();
 
+  final Color alternativeGrey = Color(0xFFFAFAFA);
   final Color lightGrey = Color(0xFFDDDDDD);
   final Color grey = Color(0xFFE5E5E5);
   final Color darkGrey = Color(0xFFCCCCCC);

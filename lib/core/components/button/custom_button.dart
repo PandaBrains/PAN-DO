@@ -7,7 +7,7 @@ class CustomButton extends StatelessWidget {
   final String buttonName;
   final VoidCallback? onPressed;
 
-  const CustomButton({Key? key, required this.buttonName, this.onPressed})
+  const CustomButton({Key? key, required this.buttonName, required this.onPressed})
       : super(key: key);
 
   @override
@@ -15,12 +15,12 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 52,
-      padding: PaddingInsets.instance!.buttonPadding,
+      padding: PaddingInsets.instance!.formPadding,
       margin: EdgeInsets.symmetric(vertical: 8),
       child: ElevatedButton(
         onPressed: onPressed,
         child: CustomText(
-          data: 'Giriş Yap',
+          data: buttonName,
           fontSize: 24,
         ),
         style: ButtonStyle(

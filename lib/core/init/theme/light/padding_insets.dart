@@ -11,5 +11,5 @@ class PaddingInsets {
   PaddingInsets._init();
 
   final lowPaddingAll = EdgeInsets.all(5);
-  final buttonPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 0);
+  final formPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 0);
 }

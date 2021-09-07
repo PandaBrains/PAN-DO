@@ -17,7 +17,7 @@ class AppThemeLight extends AppTheme with ILightTheme {
   ThemeData get theme => ThemeData(
         fontFamily: ApplicationConstants.FONT_FAMILY,
         colorScheme: _appColorScheme,
-        scaffoldBackgroundColor: colorSchemeLight!.grey,
+        scaffoldBackgroundColor: colorSchemeLight!.white,
       );
 
   ColorScheme get _appColorScheme {
