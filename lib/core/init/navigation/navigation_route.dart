@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pan_do/core/components/button/custom_button.dart';
+import 'package:pan_do/core/components/card/not_found_navigation_widget.dart';
 import 'package:pan_do/core/components/input/custom_form.dart';
-import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
 
 class NavigationRoute {
@@ -20,27 +19,21 @@ class NavigationRoute {
               title: Text('SEA'),
             ),
             body: Container(
-              child: Column(
-                children: [
-                  CustomForm(
-                    title: 'Email',
-                    hintText: 'Please Enter Email Adress',
-                    type: TextInputType.text,
-                    validator: (value) => value,
-                    onSaved: (value) => value,
-                  ),
-
-                ],
-              )
-            )));
+                child: Column(
+              children: [
+                CustomForm(
+                  title: 'Email',
+                  hintText: 'Please Enter Email Adress',
+                  type: TextInputType.text,
+                  validator: (value) => value,
+                  onSaved: (value) => value,
+                ),
+              ],
+            ))));
 
       default:
         return MaterialPageRoute(
-          builder: (context) => Scaffold(
-              appBar: AppBar(
-                title: Text('SEA'),
-              ),
-              body: Container()),
+          builder: (context) => NotFoundNavigationWidget(),
         );
     }
   }

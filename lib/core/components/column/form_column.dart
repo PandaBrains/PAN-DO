@@ -4,6 +4,7 @@ class FormColumn extends StatelessWidget {
   final List<Widget>? children;
 
   const FormColumn({Key? key, this.children}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,3 +20,4 @@ class FormColumn extends StatelessWidget {
       ],
     );
   }
+}
