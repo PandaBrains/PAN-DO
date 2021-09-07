@@ -1,3 +1,3 @@
-class NavigationConstants{
+class NavigationConstants {
   static const DEFAULT = '/';
 }
