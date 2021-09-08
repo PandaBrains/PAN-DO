@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pan_do/core/components/card/not_found_navigation_widget.dart';
-import 'package:pan_do/core/components/input/custom_form.dart';
 import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
+import 'package:pan_do/view/authenticate/login/view/login_view.dart';
 
 class NavigationRoute {
   static final NavigationRoute _instance = NavigationRoute._init();
@@ -14,22 +14,7 @@ class NavigationRoute {
     print(args.name);
     switch (args.name) {
       case NavigationConstants.DEFAULT:
-        return normalNavigate(Scaffold(
-            appBar: AppBar(
-              title: Text('SEA'),
-            ),
-            body: Container(
-                child: Column(
-              children: [
-                CustomForm(
-                  title: 'Email',
-                  hintText: 'Please Enter Email Adress',
-                  type: TextInputType.text,
-                  validator: (value) => value,
-                  onSaved: (value) => value,
-                ),
-              ],
-            ))));
+        return normalNavigate(LoginView());
 
       default:
         return MaterialPageRoute(
