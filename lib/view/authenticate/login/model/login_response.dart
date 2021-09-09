@@ -1,4 +1,4 @@
-import 'package:pan_do/core/base/base_model.dart';
+import 'package:pan_do/core/base/model/base_model.dart';
 
 class LoginResponseModel with BaseModel {
   String? status;

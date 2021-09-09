@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:pan_do/core/base/base_view_model.dart';
+import 'package:pan_do/core/base/model/base_view_model.dart';
 import 'package:pan_do/core/constants/app/app_constants.dart';
 import 'package:pan_do/core/constants/enums/locale_keys_enum.dart';
-import 'package:pan_do/core/init/cache/locale_manager.dart';
+import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
 import 'package:pan_do/core/init/network/dio_exception.dart';
 import 'package:pan_do/core/utils/app_utils.dart';
 import 'package:pan_do/view/authenticate/login/model/login.dart';
@@ -47,7 +47,7 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
         if (model.token != null) {
           await localeManager.setStringValue(
               PreferencesKeys.TOKEN, model.token!);
-          print(model.token);
+          navigationService.navigateToPageClear(path: NavigationConstants.HOME);
         }
       } catch (e) {
         print(e);
@@ -57,4 +57,7 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
       }
     }
   }
+
+  @action
+  void navigateTo(path) => navigationService.navigateToPage(path: path);
 }

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class MarginInsets {
   static MarginInsets? _instace;
   static MarginInsets? get instance {
@@ -6,4 +8,6 @@ class MarginInsets {
   }
 
   MarginInsets._init();
+
+  final formMarginLow = EdgeInsets.symmetric(vertical: 8);
 }

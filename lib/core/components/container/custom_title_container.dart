@@ -13,7 +13,7 @@ class CustomTitleContainer extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 160,
-      color: ColorSchemeLight.instance!.darkPurple,
+      color: ColorSchemeLight.instance!.purple,
       alignment: Alignment.centerLeft,
       padding: PaddingInsets.instance!.formPadding,
       child: widget,

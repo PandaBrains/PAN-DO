@@ -16,7 +16,9 @@ class LocaleManager {
   }
 
   Future<void> clearAll() async {
-    await _preferences!.clear();
+    if (_preferences != null) {
+      await _preferences!.clear();
+    }
   }
 
   Future<void> setStringValue(PreferencesKeys key, String value) async {
@@ -26,6 +28,14 @@ class LocaleManager {
   String getStringValue(PreferencesKeys key) =>
       _preferences?.getString(key.toString()) ?? '';
 
-  bool checkLocaleValue(PreferencesKeys key) =>
-      _preferences?.getString(key.toString()) != null ? true : false;
+  bool checkLocaleValue(PreferencesKeys key) {
+    if (_preferences?.getString(key.toString()) != null) {
+      print(_preferences?.getString(key.toString()));
+      return true;
+    } else {
+      return false;
+    }
+
+    //  != null ? true : false;
+  }
 }

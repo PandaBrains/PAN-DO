@@ -12,7 +12,7 @@ class FormColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorSchemeLight.instance!.darkPurple,
+      color: ColorSchemeLight.instance!.purple,
       child: Container(
         padding: PaddingInsets.instance!.formPaddingVertical,
         decoration: BoxDecoration(
@@ -35,6 +35,7 @@ class FormColumn extends StatelessWidget {
                 key: formKey,
                 child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: children!,
                   ),
                 ),

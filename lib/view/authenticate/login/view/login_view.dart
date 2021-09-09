@@ -1,9 +1,13 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:pan_do/core/components/button/custom_button.dart';
 import 'package:pan_do/core/components/column/form_column.dart';
 import 'package:pan_do/core/components/container/custom_title_container.dart';
 import 'package:pan_do/core/components/input/custom_form.dart';
 import 'package:pan_do/core/components/text/custom_text.dart';
+import 'package:pan_do/core/components/text/login_register_text.dart';
+import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
 import 'package:pan_do/view/authenticate/login/model/login.dart';
 import 'package:pan_do/view/authenticate/login/viewmodel/login_view_model.dart';
 
@@ -65,6 +69,15 @@ class LoginView extends StatelessWidget {
               context,
             ),
           ),
+          Observer(builder: (_) {
+            return LoginRegisterText(
+              firstText: 'Hesabınız yok mu? ',
+              secondText: 'Kayıt Ol',
+              gestureRecognizer: TapGestureRecognizer()
+                ..onTap =
+                    () => _viewModel.navigateTo(NavigationConstants.REGISTER),
+            );
+          })
         ],
       ),
     );

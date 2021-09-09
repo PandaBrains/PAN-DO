@@ -47,6 +47,17 @@ mixin _$LoginViewModel on _LoginViewModelBase, Store {
   }
 
   @override
+  void navigateTo(dynamic path) {
+    final _$actionInfo = _$_LoginViewModelBaseActionController.startAction(
+        name: '_LoginViewModelBase.navigateTo');
+    try {
+      return super.navigateTo(path);
+    } finally {
+      _$_LoginViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isLoading: ${isLoading}
