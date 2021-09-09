@@ -3,35 +3,35 @@ import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
 import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 
-class CustomForm extends StatefulWidget {
+class CustomTextForm extends StatefulWidget {
   final String title;
   final String hintText;
   final bool isPassword;
   final TextInputType? type;
+  final TextEditingController? controller;
   final FormFieldValidator<String> validator;
-  final FormFieldSetter<String> onSaved;
 
-  const CustomForm({
+  const CustomTextForm({
     Key? key,
     required this.title,
     required this.hintText,
     this.type,
     this.isPassword = false,
+    this.controller,
     required this.validator,
-    required this.onSaved
   }) : super(key: key);
 
   @override
-  _CustomFormState createState() => _CustomFormState();
+  _CustomTextFormState createState() => _CustomTextFormState();
 }
 
-class _CustomFormState extends State<CustomForm> {
+class _CustomTextFormState extends State<CustomTextForm> {
   late String _title;
   late String _hintText;
   late bool _isPassword;
   late TextInputType? _type;
+  late TextEditingController? _controller;
   late FormFieldValidator<String> _validator;
-  late FormFieldSetter<String> _onSaved;
 
   @override
   void initState() {
@@ -40,8 +40,8 @@ class _CustomFormState extends State<CustomForm> {
     _hintText = widget.hintText;
     _isPassword = widget.isPassword;
     _type = widget.type;
+    _controller = widget.controller;
     _validator = widget.validator;
-    _onSaved = widget.onSaved;
   }
 
   @override
@@ -61,10 +61,10 @@ class _CustomFormState extends State<CustomForm> {
             height: 8,
           ),
           TextFormField(
+            controller: _controller,
             cursorColor: Colors.black,
             keyboardType: _type,
             obscureText: _isPassword ? true : false,
-            onSaved: _onSaved,
             validator: _validator,
             decoration: InputDecoration(
                 border: InputBorder.none,
