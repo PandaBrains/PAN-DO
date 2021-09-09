@@ -12,14 +12,14 @@ class DioExceptions implements Exception {
         message = "Connection timeout with API Server.";
         break;
       case DioErrorType.other:
-        message = "Connection to API Servevr failed due to network connection.";
+        message = "Connection to API Server failed due to network connection.";
         break;
       case DioErrorType.receiveTimeout:
         message = "Receive timeout in connection with API Server.";
         break;
       case DioErrorType.response:
-        message = _hanleError(
-            dioError.response!.statusCode, dioError.response!.data); // TODO
+        message =
+            _hanleError(dioError.response!.statusCode, dioError.response!.data);
         break;
       case DioErrorType.sendTimeout:
         message = "Send timeout in connection with API Server.";
@@ -32,6 +32,8 @@ class DioExceptions implements Exception {
 
   String _hanleError(int? statusCode, dynamic error) {
     switch (statusCode) {
+      case 401:
+        return "Kullanıcı Adı veya şifre hatalı";
       case 400:
         return "Bad Request";
       case 404:
