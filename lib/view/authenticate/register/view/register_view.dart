@@ -7,14 +7,16 @@ import 'package:pan_do/core/components/input/custom_form.dart';
 import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/components/text/login_register_text.dart';
 import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
-import 'package:pan_do/view/authenticate/login/model/login.dart';
-import 'package:pan_do/view/authenticate/login/viewmodel/login_view_model.dart';
+import 'package:pan_do/view/authenticate/register/model/Register.dart';
+import 'package:pan_do/view/authenticate/register/viewmodel/register_view_model.dart';
 
-class LoginView extends StatelessWidget {
-  final _viewModel = LoginViewModel();
+class RegisterView extends StatelessWidget {
+  final _viewModel = RegisterViewModel();
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
+  final _cPassController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class LoginView extends StatelessWidget {
   CustomTitleContainer buildCustomTitle() {
     return CustomTitleContainer(
       widget: CustomText(
-        data: 'Giriş Yap',
+        data: 'Kayıt Ol',
       ),
     );
   }
@@ -43,6 +45,12 @@ class LoginView extends StatelessWidget {
       child: FormColumn(
         formKey: _formKey,
         children: [
+          CustomTextForm(
+            controller: _nameController,
+            title: "İsim Soyisim",
+            hintText: "İsim Soyisim",
+            validator: (value) => _viewModel.checkName(value),
+          ),
           CustomTextForm(
             controller: _emailController,
             title: "E-Posta Hesabı",
@@ -56,25 +64,33 @@ class LoginView extends StatelessWidget {
             isPassword: true,
             validator: (value) => _viewModel.checkPass(value),
           ),
+          CustomTextForm(
+            controller: _cPassController,
+            title: "Şifre Tekrar",
+            hintText: "********",
+            isPassword: true,
+            validator: (value) =>
+                _viewModel.checkFirstSecondPass(_passController.text, value),
+          ),
           CustomButton(
-              buttonName: "Giriş Yap",
+              buttonName: "Kayıt Ol",
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  _viewModel.userLogin(
-                    new LoginModel(
-                      email: _emailController.text,
-                      password: _passController.text,
-                    ),
+                  _viewModel.userRegister(
+                    RegisterModel(
+                        name: _nameController.text,
+                        email: _emailController.text,
+                        pass: _passController.text,
+                        cPass: _cPassController.text),
                     context,
                   );
                 }
               }),
           LoginRegisterText(
-            firstText: 'Hesabınız yok mu? ',
-            secondText: 'Kayıt Ol',
+            firstText: 'Hesabınız var mı? ',
+            secondText: 'Giriş Yap',
             gestureRecognizer: TapGestureRecognizer()
-              ..onTap =
-                  () => _viewModel.navigateTo(NavigationConstants.REGISTER),
+              ..onTap = () => _viewModel.navigateTo(NavigationConstants.LOGIN),
           ),
         ],
       ),

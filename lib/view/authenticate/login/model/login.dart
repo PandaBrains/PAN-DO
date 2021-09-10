@@ -1,4 +1,6 @@
-class LoginModel {
+import 'package:pan_do/core/base/model/base_model.dart';
+
+class LoginModel with BaseModel {
   String? email;
   String? password;
 
@@ -9,10 +11,10 @@ class LoginModel {
     password = json['password'];
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['email'] = this.email;
-    data['password'] = this.password;
+  Map<String, String> toJson() {
+    final Map<String, String> data = new Map<String, String>();
+    data['email'] = this.email.toString();
+    data['password'] = this.password.toString();
     return data;
   }
 }

@@ -23,26 +23,14 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
   @override
   void init() {}
 
-  @observable
-  bool isLoading = true;
-
-  @action
-  void isLoadingChange() => isLoading = !isLoading;
-
   @action
   Future<void> userLogin(LoginModel loginModel, BuildContext context) async {
     if (loginModel.email!.isEmpty && loginModel.password!.isEmpty) {
-      AppUtils().showSnacBar(context, "E-Posta ya da Şifre boş bırakılamaz.");
+      AppUtils().showSnackBar(context, "E-Posta ya da Şifre boş bırakılamaz.");
       return;
     } else {
       try {
-        final response = await Dio().post(
-          url,
-          data: {
-            'email': loginModel.email,
-            'password': loginModel.password,
-          },
-        );
+        final response = await dio.post(url, data: loginModel.toJson());
         final model = LoginResponseModel.fromJson(response.data);
         if (model.token != null) {
           await localeManager.setStringValue(
@@ -50,14 +38,19 @@ abstract class _LoginViewModelBase with Store, BaseViewModel {
           navigationService.navigateToPageClear(path: NavigationConstants.HOME);
         }
       } catch (e) {
-        print(e);
         final errorMessage =
             DioExceptions.fromDioError(e as DioError).toString();
-        AppUtils().showSnacBar(context, errorMessage);
+        AppUtils().showSnackBar(context, errorMessage);
       }
     }
   }
 
   @action
   void navigateTo(path) => navigationService.navigateToPage(path: path);
+
+  @action
+  String? checkEmail(email) => AppUtils().checkEmail(email);
+
+  @action
+  String? checkPass(pass) => AppUtils().checkPassword(pass);
 }
