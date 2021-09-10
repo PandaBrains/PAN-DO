@@ -5,10 +5,13 @@ class LocaleManager {
   static final LocaleManager _instance = LocaleManager._init();
 
   SharedPreferences? _preferences;
+
   static LocaleManager get instance => _instance;
 
   LocaleManager._init() {
-    SharedPreferences.getInstance().then((value) => _preferences = value);
+    SharedPreferences.getInstance().then((value) {
+      _preferences = value;
+    });
   }
 
   static Future preferencesInit() async {
@@ -16,9 +19,7 @@ class LocaleManager {
   }
 
   Future<void> clearAll() async {
-    if (_preferences != null) {
-      await _preferences!.clear();
-    }
+    await _preferences!.clear();
   }
 
   Future<void> setStringValue(PreferencesKeys key, String value) async {
@@ -28,14 +29,6 @@ class LocaleManager {
   String getStringValue(PreferencesKeys key) =>
       _preferences?.getString(key.toString()) ?? '';
 
-  bool checkLocaleValue(PreferencesKeys key) {
-    if (_preferences?.getString(key.toString()) != null) {
-      print(_preferences?.getString(key.toString()));
-      return true;
-    } else {
-      return false;
-    }
-
-    //  != null ? true : false;
-  }
+  bool checkLocaleValue(PreferencesKeys key) =>
+      _preferences?.getString(key.toString()) != null ? true : false;
 }

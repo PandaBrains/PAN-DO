@@ -3,8 +3,7 @@ import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
 
 class AppUtils {
-  void showSnackBar(BuildContext context, content) {
-    try {
+  void showSnackBar(BuildContext context, content) =>
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: CustomText(
           data: content,
@@ -13,10 +12,6 @@ class AppUtils {
         ),
         backgroundColor: ColorSchemeLight.instance!.black,
       ));
-    } catch (e) {
-      print(e);
-    }
-  }
 
   String? checkEmail(mail) {
     RegExp regex = new RegExp(

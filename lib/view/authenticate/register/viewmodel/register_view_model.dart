@@ -15,7 +15,7 @@ part 'register_view_model.g.dart';
 class RegisterViewModel = _RegisterViewModelBase with _$RegisterViewModel;
 
 abstract class _RegisterViewModelBase with Store, BaseViewModel {
-  final url = ApplicationConstants.BASE_URL + 'register';
+  final url = ApplicationConstants.BASE_URL + 'api/register';
 
   @override
   void setContext(BuildContext context) => this.context = context;
@@ -43,7 +43,6 @@ abstract class _RegisterViewModelBase with Store, BaseViewModel {
   Future<void> userRegister(RegisterModel model, BuildContext context) async {
     try {
       final response = await dio.post(url, data: model.toJson());
-      print(response.statusCode);
       if (response.statusCode == HttpStatus.ok) {
         navigationService.navigateToPageClear(path: NavigationConstants.LOGIN);
         AppUtils().showSnackBar(context, "Kullanıcı Başarıyla Oluşturuldu.");

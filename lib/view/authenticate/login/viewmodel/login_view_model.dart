@@ -15,7 +15,7 @@ part 'login_view_model.g.dart';
 class LoginViewModel = _LoginViewModelBase with _$LoginViewModel;
 
 abstract class _LoginViewModelBase with Store, BaseViewModel {
-  final url = ApplicationConstants.BASE_URL + 'login';
+  final url = ApplicationConstants.BASE_URL + 'api/login';
 
   @override
   void setContext(BuildContext context) => this.context = context;
