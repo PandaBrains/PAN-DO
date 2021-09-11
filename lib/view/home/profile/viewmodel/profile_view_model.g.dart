@@ -24,6 +24,21 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     });
   }
 
+  final _$isLoadingAtom = Atom(name: '_ProfileViewModelBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   final _$updateProfileAsyncAction =
       AsyncAction('_ProfileViewModelBase.updateProfile');
 
@@ -40,6 +55,15 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
     return _$logOutAsyncAction.run(() => super.logOut());
   }
 
+  final _$getUserInformationAsyncAction =
+      AsyncAction('_ProfileViewModelBase.getUserInformation');
+
+  @override
+  Future<void> getUserInformation() {
+    return _$getUserInformationAsyncAction
+        .run(() => super.getUserInformation());
+  }
+
   final _$_ProfileViewModelBaseActionController =
       ActionController(name: '_ProfileViewModelBase');
 
@@ -49,6 +73,17 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
         name: '_ProfileViewModelBase.changeEditing');
     try {
       return super.changeEditing();
+    } finally {
+      _$_ProfileViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeLoading() {
+    final _$actionInfo = _$_ProfileViewModelBaseActionController.startAction(
+        name: '_ProfileViewModelBase.changeLoading');
+    try {
+      return super.changeLoading();
     } finally {
       _$_ProfileViewModelBaseActionController.endAction(_$actionInfo);
     }
@@ -101,7 +136,8 @@ mixin _$ProfileViewModel on _ProfileViewModelBase, Store {
   @override
   String toString() {
     return '''
-isEditing: ${isEditing}
+isEditing: ${isEditing},
+isLoading: ${isLoading}
     ''';
   }
 }

@@ -4,6 +4,7 @@ import 'package:pan_do/core/components/button/custom_button.dart';
 import 'package:pan_do/core/components/column/form_column.dart';
 import 'package:pan_do/core/components/container/custom_title_container.dart';
 import 'package:pan_do/core/components/input/custom_form.dart';
+import 'package:pan_do/core/components/loading/custom_loading.dart';
 import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
 import 'package:pan_do/view/authenticate/register/model/Register.dart';
@@ -19,20 +20,25 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _viewModel.init();
     return buildApp(context);
   }
 
-  Widget buildApp(BuildContext context) => Column(
-        children: [
-          buildAppTitle(),
-          Expanded(
-            child: Observer(
-              builder: (_) => _viewModel.isEditing
-                  ? buildAppSettingsEditing(context)
-                  : buildAppSettings(),
-            ),
-          ),
-        ],
+  Widget buildApp(BuildContext context) => Observer(
+        builder: (_) => _viewModel.isLoading
+            ? Column(
+                children: [
+                  buildAppTitle(),
+                  Expanded(
+                    child: Observer(
+                      builder: (_) => _viewModel.isEditing
+                          ? buildAppSettingsEditing(context)
+                          : buildAppSettings(),
+                    ),
+                  ),
+                ],
+              )
+            : Center(child: CustomLoading()),
       );
 
   FormColumn buildAppSettings() {
@@ -40,13 +46,13 @@ class ProfileView extends StatelessWidget {
       children: [
         CustomTextForm(
           title: 'İsim Soyisim',
-          hintText: 'Onur TAŞDEMİR',
+          hintText: _viewModel.userModel.name!,
           validator: (value) {},
           isEnabled: false,
         ),
         CustomTextForm(
           title: 'E-Posta Hesabı',
-          hintText: 'onur@keko.dev',
+          hintText: _viewModel.userModel.email!,
           validator: (value) {},
           isEnabled: false,
         ),
@@ -97,8 +103,12 @@ class ProfileView extends StatelessWidget {
               _viewModel.checkFirstSecondPass(_passController.text, value),
         ),
         CustomButton(
-          buttonName: 'Bilgilerimi Güncelle',
+          buttonName: 'Geri',
           backgroudColor: ColorSchemeLight.instance!.darkPurple,
+          onPressed: () => _viewModel.changeEditing(),
+        ),
+        CustomButton(
+          buttonName: 'Bilgilerimi Güncelle',
           onPressed: () {
             if (_formKey.currentState!.validate()) {
               _viewModel.updateProfile(
@@ -111,10 +121,6 @@ class ProfileView extends StatelessWidget {
               );
             }
           },
-        ),
-        CustomButton(
-          buttonName: 'Geri',
-          onPressed: () => _viewModel.changeEditing(),
         ),
       ],
     );
