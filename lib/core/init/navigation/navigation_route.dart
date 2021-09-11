@@ -4,6 +4,7 @@ import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
 import 'package:pan_do/view/authenticate/login/view/login_view.dart';
 import 'package:pan_do/view/authenticate/register/view/register_view.dart';
 import 'package:pan_do/view/authenticate/splash/view/splash_view.dart';
+import 'package:pan_do/view/home/onboard/view/on_board_view.dart';
 import 'package:pan_do/view/home/welcome/view/welcome_view.dart';
 
 class NavigationRoute {
@@ -22,7 +23,7 @@ class NavigationRoute {
       case NavigationConstants.REGISTER:
         return normalNavigate(RegisterView());
       case NavigationConstants.HOME:
-        return normalNavigate(WelcomeView());
+        return normalNavigate(OnBoardView());
       default:
         return MaterialPageRoute(
           builder: (context) => NotFoundNavigationWidget(),
