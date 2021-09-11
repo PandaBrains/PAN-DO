@@ -1,4 +1,4 @@
-# pan_do
+# PAN_DO
 
 Flutter To-Do Application.
 

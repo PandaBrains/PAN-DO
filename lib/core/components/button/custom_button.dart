@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
+import 'package:pan_do/core/init/theme/light/margin_insets.dart';
 import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonName;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
+  final Color? backgroudColor;
 
-  const CustomButton({Key? key, required this.buttonName, required this.onPressed})
-      : super(key: key);
+  const CustomButton({
+    Key? key,
+    required this.buttonName,
+    required this.onPressed,
+    this.backgroudColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +22,7 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: 52,
       padding: PaddingInsets.instance!.formPadding,
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: MarginInsets.instance!.formMarginLow,
       child: ElevatedButton(
         onPressed: onPressed,
         child: CustomText(
@@ -29,8 +35,9 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
           ),
-          backgroundColor:
-              MaterialStateProperty.all(ColorSchemeLight.instance!.orange),
+          backgroundColor: MaterialStateProperty.all(
+            backgroudColor ?? ColorSchemeLight.instance!.orange,
+          ),
         ),
       ),
     );

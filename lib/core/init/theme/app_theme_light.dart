@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
 
 import '../../constants/app/app_constants.dart';
 import 'app_theme.dart';
@@ -24,7 +25,7 @@ class AppThemeLight extends AppTheme with ILightTheme {
     return ColorScheme(
         primary: colorSchemeLight!.purple,
         primaryVariant: Colors.white,
-        secondary: Colors.green,
+        secondary: ColorSchemeLight.instance!.darkPurple,
         secondaryVariant: colorSchemeLight!.darkPurple,
         surface: Colors.blue,
         background: Color(0xfff6f9fc),

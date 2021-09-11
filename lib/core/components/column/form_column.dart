@@ -4,15 +4,14 @@ import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 
 class FormColumn extends StatelessWidget {
   final List<Widget>? children;
-  final GlobalKey<FormState> formKey;
+  final GlobalKey<FormState>? formKey;
 
-  const FormColumn({Key? key, this.children, required this.formKey})
-      : super(key: key);
+  const FormColumn({Key? key, this.children, this.formKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorSchemeLight.instance!.darkPurple,
+      color: ColorSchemeLight.instance!.purple,
       child: Container(
         padding: PaddingInsets.instance!.formPaddingVertical,
         decoration: BoxDecoration(
@@ -35,6 +34,7 @@ class FormColumn extends StatelessWidget {
                 key: formKey,
                 child: SingleChildScrollView(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: children!,
                   ),
                 ),
