@@ -12,11 +12,11 @@ class ColorSchemeLight {
   final Color alternativeGrey = Color(0xFFFAFAFA);
   final Color lightGrey = Color(0xFFDDDDDD);
   final Color grey = Color(0xFFE5E5E5);
+  final Color alternativeDarkGrey = Color(0xFFFAFAFA);
   final Color darkGrey = Color(0xFFCCCCCC);
   final Color purple = Color(0xFF4263EC);
   final Color darkPurple = Color(0xFF2B49C3);
   final Color orange = Color(0xFFFB9F33);
   final Color white = Color(0xFFFFFFFF);
   final Color black = Color(0xFF000000);
-
 }
