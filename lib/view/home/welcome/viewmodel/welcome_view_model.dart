@@ -23,6 +23,7 @@ abstract class _WelcomeViewModelBase with Store, BaseViewModel {
 
   @override
   Future<void> init() async {
+    isLoading = false;
     token = localeManager.getStringValue(PreferencesKeys.TOKEN);
     getAllTodos(context);
   }
