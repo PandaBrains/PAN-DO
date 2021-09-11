@@ -34,6 +34,9 @@ class CustomSearchBar extends StatelessWidget {
                 ),
               ),
               onChanged: onChanged,
+              style: TextStyle(
+                color: ColorSchemeLight.instance!.white,
+              ),
             ),
           ),
           Icon(

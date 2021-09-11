@@ -4,10 +4,9 @@ import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 
 class FormColumn extends StatelessWidget {
   final List<Widget>? children;
-  final GlobalKey<FormState> formKey;
+  final GlobalKey<FormState>? formKey;
 
-  const FormColumn({Key? key, this.children, required this.formKey})
-      : super(key: key);
+  const FormColumn({Key? key, this.children, this.formKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

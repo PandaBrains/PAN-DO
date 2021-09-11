@@ -7,10 +7,14 @@ import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 class CustomButton extends StatelessWidget {
   final String buttonName;
   final VoidCallback onPressed;
+  final Color? backgroudColor;
 
-  const CustomButton(
-      {Key? key, required this.buttonName, required this.onPressed})
-      : super(key: key);
+  const CustomButton({
+    Key? key,
+    required this.buttonName,
+    required this.onPressed,
+    this.backgroudColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +35,9 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
           ),
-          backgroundColor:
-              MaterialStateProperty.all(ColorSchemeLight.instance!.orange),
+          backgroundColor: MaterialStateProperty.all(
+            backgroudColor ?? ColorSchemeLight.instance!.orange,
+          ),
         ),
       ),
     );

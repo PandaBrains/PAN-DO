@@ -34,6 +34,7 @@ class RegisterView extends StatelessWidget {
 
   CustomTitleContainer buildCustomTitle() {
     return CustomTitleContainer(
+      height: 160,
       widget: CustomText(
         data: 'Kayıt Ol',
       ),

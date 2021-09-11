@@ -8,10 +8,12 @@ class OnBoardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _viewModel.onBoardItems[_viewModel.currentIndex],
-      bottomNavigationBar: Observer(builder: (_) {
-        return buildBottomBar();
-      }),
+      body: Observer(
+        builder: (_) => _viewModel.onBoardItems[_viewModel.currentIndex],
+      ),
+      bottomNavigationBar: Observer(
+        builder: (_) => buildBottomBar(),
+      ),
     );
   }
 

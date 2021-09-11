@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:pan_do/core/base/model/base_view_model.dart';
+import 'package:pan_do/view/home/profile/view/profile_view.dart';
 import 'package:pan_do/view/home/welcome/view/welcome_view.dart';
 part 'on_board_view_model.g.dart';
 
@@ -16,7 +17,7 @@ abstract class _OnBoardViewModelBase with Store, BaseViewModel {
   List onBoardItems = [
     WelcomeView(),
     WelcomeView(),
-    WelcomeView(),
+    ProfileView(),
   ];
 
   @observable

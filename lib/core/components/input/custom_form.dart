@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
+import 'package:pan_do/core/init/theme/light/margin_insets.dart';
 import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 
 class CustomTextForm extends StatefulWidget {
   final String title;
   final String hintText;
-  final bool isPassword;
+  final bool isPassword, isEnabled;
   final TextInputType? type;
   final TextEditingController? controller;
   final FormFieldValidator<String> validator;
@@ -19,6 +20,7 @@ class CustomTextForm extends StatefulWidget {
     this.isPassword = false,
     this.controller,
     required this.validator,
+    this.isEnabled = true,
   }) : super(key: key);
 
   @override
@@ -32,6 +34,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
   late TextInputType? _type;
   late TextEditingController? _controller;
   late FormFieldValidator<String> _validator;
+  late bool _isEnabled;
 
   @override
   void initState() {
@@ -42,12 +45,13 @@ class _CustomTextFormState extends State<CustomTextForm> {
     _type = widget.type;
     _controller = widget.controller;
     _validator = widget.validator;
+    _isEnabled = widget.isEnabled;
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8),
+      margin: MarginInsets.instance!.formMarginLow,
       padding: PaddingInsets.instance!.formPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,9 +66,10 @@ class _CustomTextFormState extends State<CustomTextForm> {
           ),
           TextFormField(
             controller: _controller,
-            cursorColor: Colors.black,
+            cursorColor: ColorSchemeLight.instance!.black,
             keyboardType: _type,
             obscureText: _isPassword ? true : false,
+            enabled: _isEnabled,
             validator: _validator,
             decoration: InputDecoration(
                 border: InputBorder.none,
@@ -76,8 +81,7 @@ class _CustomTextFormState extends State<CustomTextForm> {
                     borderSide: BorderSide.none),
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
-                contentPadding:
-                    EdgeInsets.only(left: 15, bottom: 11, top: 11, right: 15),
+                contentPadding: PaddingInsets.instance!.formContentPadding,
                 fillColor: ColorSchemeLight.instance!.alternativeGrey,
                 filled: true,
                 labelStyle: TextStyle(fontWeight: FontWeight.bold),
