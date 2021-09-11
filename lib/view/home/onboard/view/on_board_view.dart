@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
 import 'package:pan_do/view/home/onboard/viewmodel/on_board_view_model.dart';
 
 class OnBoardView extends StatelessWidget {
@@ -18,9 +19,11 @@ class OnBoardView extends StatelessWidget {
   }
 
   BottomNavigationBar buildBottomBar() => BottomNavigationBar(
+        backgroundColor: ColorSchemeLight.instance!.white,
         currentIndex: _viewModel.currentIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
+        selectedItemColor: ColorSchemeLight.instance!.darkPurple,
         items: [
           BottomNavigationBarItem(
               icon: Icon(
@@ -29,7 +32,9 @@ class OnBoardView extends StatelessWidget {
               label: 'Ana Sayfa'),
           BottomNavigationBarItem(
               icon: Icon(
-                Icons.add,
+                Icons.add_box,
+                color: ColorSchemeLight.instance!.orange,
+                size: 48,
               ),
               label: 'Yeni Görev'),
           BottomNavigationBarItem(
