@@ -7,6 +7,7 @@ import 'package:pan_do/core/components/searchbar/search_bar.dart';
 import 'package:pan_do/core/components/text/custom_text.dart';
 import 'package:pan_do/core/init/theme/light/color_scheme_light.dart';
 import 'package:pan_do/core/init/theme/light/margin_insets.dart';
+import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 import 'package:pan_do/view/home/welcome/viewmodel/welcome_view_model.dart';
 
 class WelcomeView extends StatelessWidget {
@@ -94,9 +95,19 @@ class WelcomeView extends StatelessWidget {
           scrollDirection: Axis.vertical,
           primary: false,
           itemCount: _viewModel.toDoModel.length,
-          itemBuilder: (context, index) => CustomListTile(
-            title: _viewModel.toDoModel[index].title!,
-            subtitle: _viewModel.toDoModel[index].detail!,
+          itemBuilder: (context, index) => Dismissible(
+            key: Key(_viewModel.toDoModel[index].title!),
+            child: InkWell(
+              onTap: () => print("tapped"),
+              child: CustomListTile(
+                title: _viewModel.toDoModel[index].title!,
+                subtitle: _viewModel.toDoModel[index].detail!,
+              ),
+            ),
+            background: slideRightBackground(),
+            secondaryBackground: slideLeftBackground(),
+            confirmDismiss: (direction) =>
+                _viewModel.dismissItem(direction, context, index),
           ),
         ),
       ],
@@ -130,6 +141,60 @@ class WelcomeView extends StatelessWidget {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget slideRightBackground() {
+    return Container(
+      padding: PaddingInsets.instance!.formPadding,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              width: 20,
+            ),
+            Icon(
+              Icons.edit,
+              color: ColorSchemeLight.instance!.darkPurple,
+            ),
+            CustomText(
+              data: 'Görevi Düzenle',
+              fontWeight: FontWeight.w700,
+              color: ColorSchemeLight.instance!.darkPurple,
+              fontSize: 16,
+            ),
+          ],
+        ),
+        alignment: Alignment.centerLeft,
+      ),
+    );
+  }
+
+  Widget slideLeftBackground() {
+    return Container(
+      padding: PaddingInsets.instance!.formPadding,
+      child: Align(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            CustomText(
+              data: 'Görevi Sil',
+              fontWeight: FontWeight.w700,
+              color: ColorSchemeLight.instance!.red,
+              fontSize: 16,
+            ),
+            SizedBox(
+              width: 20,
+            ),
+          ],
+        ),
+        alignment: Alignment.centerRight,
       ),
     );
   }

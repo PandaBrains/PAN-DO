@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pandabrains.pan_do">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="pan_do"
+        android:label="PAN DO"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

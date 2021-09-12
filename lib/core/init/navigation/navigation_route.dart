@@ -4,8 +4,8 @@ import 'package:pan_do/core/constants/navigation/navigation_constants.dart';
 import 'package:pan_do/view/authenticate/login/view/login_view.dart';
 import 'package:pan_do/view/authenticate/register/view/register_view.dart';
 import 'package:pan_do/view/authenticate/splash/view/splash_view.dart';
+import 'package:pan_do/view/home/edittask/view/edit_task_view.dart';
 import 'package:pan_do/view/home/onboard/view/on_board_view.dart';
-import 'package:pan_do/view/home/welcome/view/welcome_view.dart';
 
 class NavigationRoute {
   static final NavigationRoute _instance = NavigationRoute._init();
@@ -24,6 +24,11 @@ class NavigationRoute {
         return normalNavigate(RegisterView());
       case NavigationConstants.HOME:
         return normalNavigate(OnBoardView());
+      case NavigationConstants.UPDATE:
+        return MaterialPageRoute(
+          builder: (context) => EditTaskView(),
+          settings: args
+        );
       default:
         return MaterialPageRoute(
           builder: (context) => NotFoundNavigationWidget(),

@@ -5,8 +5,7 @@ import 'package:pan_do/core/init/theme/light/margin_insets.dart';
 import 'package:pan_do/core/init/theme/light/padding_insets.dart';
 
 class CustomTextForm extends StatefulWidget {
-  final String title;
-  final String hintText;
+  final String title, hintText;
   final bool isPassword, isEnabled;
   final TextInputType? type;
   final TextEditingController? controller;
@@ -28,8 +27,7 @@ class CustomTextForm extends StatefulWidget {
 }
 
 class _CustomTextFormState extends State<CustomTextForm> {
-  late String _title;
-  late String _hintText;
+  late String _title, _hintText;
   late bool _isPassword;
   late TextInputType? _type;
   late TextEditingController? _controller;
