@@ -54,6 +54,16 @@ mixin _$WelcomeViewModel on _WelcomeViewModelBase, Store {
     return _$searhToDoAsyncAction.run(() => super.searhToDo(searchText));
   }
 
+  final _$dismissItemAsyncAction =
+      AsyncAction('_WelcomeViewModelBase.dismissItem');
+
+  @override
+  Future<bool> dismissItem(
+      DismissDirection direction, BuildContext context, int index) {
+    return _$dismissItemAsyncAction
+        .run(() => super.dismissItem(direction, context, index));
+  }
+
   final _$_WelcomeViewModelBaseActionController =
       ActionController(name: '_WelcomeViewModelBase');
 
